@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Autenticação",
+    "version": "1.0.0",
+    "description": "Exemplo simples de autenticação com JWT"
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Login do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuario": { "type": "string" },
+                  "senha": { "type": "string" }
+                }
+              },
+              "example": { "usuario": "admin", "senha": "123" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token JWT gerado",
+            "content": {
+              "application/json": {
+                "example": { "token": "jwt_token_aqui" }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
+    "/auth/dados": {
+      "get": {
+        "summary": "Acesso protegido com JWT",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Acesso autorizado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "mensagem": "Acesso autorizado!",
+                  "usuario": "admin",
+                  "dados": ["item1", "item2", "item3"]
+                }
+              }
+            }
+          },
+          "401": { "description": "Token ausente" },
+          "403": { "description": "Token inválido" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
