@@ -81,8 +81,11 @@ Retorna informações somente se o token for válido
 
 ## 👩‍💻 Autoria
 - Desenvolvido por:
-  **Leticia Arruda de Freitas**
-  **Anthony Gabriel Oliveira Cruz**
+  
+  **Leticia Arruda de Freitas;**
+  
+  **Anthony Gabriel Oliveira Cruz;**
+  
   **Andresa Lídia de Figueiredo Martins**
 
 - Projeto de extensão — Engenharia da Computação (IFMT- Campus Cuiabá)
