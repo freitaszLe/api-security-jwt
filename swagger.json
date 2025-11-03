@@ -16,11 +16,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "usuario": { "type": "string" },
-                  "senha": { "type": "string" }
+                  "usuario": {
+                    "type": "string"
+                  },
+                  "senha": {
+                    "type": "string"
+                  }
                 }
               },
-              "example": { "usuario": "admin", "senha": "123" }
+              "example": {
+                "usuario": "admin",
+                "senha": "123"
+              }
             }
           }
         },
@@ -29,7 +36,9 @@
             "description": "Token JWT gerado",
             "content": {
               "application/json": {
-                "example": { "token": "jwt_token_aqui" }
+                "example": {
+                  "token": "jwt_token_aqui"
+                }
               }
             }
           },
@@ -42,7 +51,11 @@
     "/auth/dados": {
       "get": {
         "summary": "Acesso protegido com JWT",
-        "security": [{ "bearerAuth": [] }],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Acesso autorizado",
@@ -51,13 +64,69 @@
                 "example": {
                   "mensagem": "Acesso autorizado!",
                   "usuario": "admin",
-                  "dados": ["item1", "item2", "item3"]
+                  "dados": [
+                    "item1",
+                    "item2",
+                    "item3"
+                  ]
                 }
               }
             }
           },
-          "401": { "description": "Token ausente" },
-          "403": { "description": "Token inválido" }
+          "401": {
+            "description": "Token ausente"
+          },
+          "403": {
+            "description": "Token inválido"
+          }
+        }
+      }
+    },
+    "/externa/clima/{cidade}": {
+      "get": {
+        "summary": "Consulta de clima por cidade (protegido)",
+        "description": "Retorna dados climáticos atuais da cidade informada usando a WeatherAPI.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cidade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Cuiaba"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Clima retornado com sucesso",
+            "content": {
+              "application/json": {
+                "example": {
+                  "cidade": "Cuiabá",
+                  "pais": "Brasil",
+                  "temperatura_c": 34,
+                  "condicao": "Ensolarado",
+                  "umidade": 60,
+                  "vento_kph": 10
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token ausente"
+          },
+          "403": {
+            "description": "Token inválido"
+          },
+          "500": {
+            "description": "Erro ao consultar API externa"
+          }
         }
       }
     }
