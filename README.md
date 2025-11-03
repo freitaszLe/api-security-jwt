@@ -1,23 +1,45 @@
-# 🔐 Secure REST API com Node.js + JWT
+# 🌐 MiniCurso – Secure REST API com Node.js + JWT 
 
-Projeto desenvolvido como parte de um **minicurso de extensão** sobre autenticação em APIs RESTful.  
-A aplicação demonstra como implementar **autenticação com JWT (JSON Web Token)** em uma API construída com **Node.js, Express e Swagger**.  
+Projeto desenvolvido como parte de um **minicurso de extensão** sobre **autenticação em APIs RESTful e consumo de APIs externas**.  
+A aplicação demonstra:
+- Como implementar **autenticação com JWT (JSON Web Token)** em uma API Node.js;
+- Como proteger rotas;
+- E como **um frontend moderno** consome e exibe dados de forma visual.  
 
 ---
 
 ## 📌 Funcionalidades
-- Registro e login de usuário *(exemplo básico com credenciais fixas)*  
-- Geração de **token JWT** após login bem-sucedido  
-- Rota protegida que só pode ser acessada com token válido  
-- Documentação interativa da API com **Swagger UI**  
+
+### 🖥️ Backend (Node.js + Express)
+- **Login e geração de token JWT**
+- **Autenticação de rotas protegidas**
+- **Consumo de API externa (WeatherAPI)**
+- **Documentação interativa com Swagger UI**
+
+### 🎨 Frontend (HTML + CSS + JS puro)
+- **Interface moderna e responsiva (Glassmorphism)**
+- **Animação de fundo com nuvens e gradiente dinâmico**
+- **Exibição visual do clima com ícones dinâmicos ☀️ 🌧️ 🌫️ ⛅**
+- **Simulação de SPA (Single Page Application)** com roteamento em JavaScript puro
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
-- [Node.js](https://nodejs.org/)  
-- [Express](https://expressjs.com/)  
-- [jsonwebtoken (JWT)](https://www.npmjs.com/package/jsonwebtoken)  
-- [Swagger UI Express](https://www.npmjs.com/package/swagger-ui-express)  
+
+### Backend
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [jsonwebtoken (JWT)](https://www.npmjs.com/package/jsonwebtoken)
+- [Swagger UI Express](https://www.npmjs.com/package/swagger-ui-express)
+- [Axios](https://axios-http.com/)
+- [CORS](https://www.npmjs.com/package/cors)
+
+### Frontend
+- HTML5, CSS3 e JavaScript puro
+- Layout em **Glassmorphism**
+- **Fundo animado com nuvens e gradiente**
+- Ícones e emojis dinâmicos para o clima 🌦️
+- Design 100% responsivo
 
 ---
 
@@ -67,15 +89,52 @@ Corpo da requisição:
 
 Retorna informações somente se o token for válido
 
+### 🌦️ Consumo de API Externa (WeatherAPI)
+- Rota Protegida
+**Endpoint: GET /externa/clima/:cidade**
+  Exemplo:
+  
+  ```json
+      /externa/clima/Cuiaba
+   ```
+   
+   ```json
+   {
+     "cidade": "Cuiabá",
+     "pais": "Brasil",
+     "temperatura_c": 33.5,
+     "condicao": "Parcialmente nublado",
+     "umidade": 56,
+     "vento_kph": 8.7
+   }
+   ```
+   
+⚠️ É necessário criar uma conta gratuita em https://www.weatherapi.com/
+ e inserir sua chave (API_KEY) no arquivo routes/externa.js.
+  
+---
+
 ## 📂 Estrutura do Projeto
 
    ```bash
-   auth-api/
-├── index.js           # Ponto de entrada da aplicação
-├── swagger.js         # Configuração do Swagger
-├── package.json       # Dependências e scripts do projeto
-├── .gitignore         # Arquivos e pastas ignorados pelo Git
-└── README.md          # Documentação do projeto
+   api-security-jwt/
+   ├── frontend/
+   ├── index.html          # Página principal com roteamento SPA
+   ├── css/style.css       # Estilo visual moderno e animado
+   ├── js/router.js        # Sistema de rotas do front
+   ├── js/api.js           # Conexão com a API Node.js
+   ├── js/app.js           # Lógica de login e consumo de clima
+   └── pages/
+       ├── login.html
+       └── clima.html
+   ├── index.js           # Ponto de entrada do backend
+   ├── routes/
+   │   ├── auth.js        # Autenticação e geração de JWT
+   │   └── externa.js     # Consumo da WeatherAPI (rota protegida)
+   ├── swagger.json       # Configuração do Swagger UI
+   ├── package.json       # Dependências do backend
+   └── frontend/          # Interface web animada e responsiva
+
 
    ```
 
