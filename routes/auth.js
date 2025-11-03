@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-const SECRET = "segredo123"; // Em produção, isso fica em variável de ambiente
+const SECRET = "segredo123"; 
 
 // Rota de login → gera token
 router.post("/login", (req, res) => {
